@@ -1,24 +1,21 @@
 pipeline {
     agent any
-    triggers {
-        githubPush(secret: 'my-secret-key') // ตรวจสอบ Secret
-    }
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/66026123/test.git'
+                git branch: 'main', url: 'https://github.com/66026123/test.git'
             }
         }
         stage('Build') {
             steps {
                 echo 'Building the project...'
-                // เพิ่มคำสั่งสำหรับการ build เช่น การใช้ Docker หรือการคอมไพล์โค้ด
+                // ใส่คำสั่ง build ที่ต้องการ
             }
         }
         stage('Deploy') {
             steps {
                 echo 'Deploying the project...'
-                // เพิ่มคำสั่งสำหรับการ deploy เช่น การใช้ Docker หรือ Ansible
+                // ใส่คำสั่ง deploy ที่ต้องการ
             }
         }
     }
