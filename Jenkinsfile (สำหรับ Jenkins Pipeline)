@@ -1,0 +1,20 @@
+pipeline {
+    agent any
+    stages {
+        stage('Clone Code') {
+            steps {
+                git branch: 'main', url: 'https://github.com/66026123/test.git'
+            }
+        }
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t test.:v1 .'
+            }
+        }
+        stage('Run Docker Container') {
+            steps {
+                sh 'docker run -d -p 3000:80 test.:v1'
+            }
+        }
+    }
+}
